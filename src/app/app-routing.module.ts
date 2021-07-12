@@ -6,9 +6,9 @@ import {FooterComponent} from './footer/footer.component';
 
 
 const routes: Routes = [
-  {path:'', component:HomeComponent},
-  {path:'footer', component:FooterComponent},
-  {path:'timer', component:TimerComponent}
+  {path:'home', component:HomeComponent},
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '**', redirectTo: 'home', pathMatch: 'full' }
 ];
 
 @NgModule({

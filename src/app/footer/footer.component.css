@@ -13,6 +13,7 @@ div{
 }
 i:hover{
     color: hsl(345, 95%, 68%) !important;
+    cursor: pointer;
 }
 .container{
     align-content: center;

@@ -1,6 +1,5 @@
 import { Component, OnInit,Input } from '@angular/core';
 import { Subscription,interval } from 'rxjs';
-import {constants} from '../common/constants';
 @Component({
   selector: 'app-timer',
   templateUrl: './timer.component.html',
@@ -13,6 +12,10 @@ export class TimerComponent implements OnInit {
   curr_date=new Date();
   @Input() target_date:Date;
 
+  numOfMilliSecs = 1000;
+  numOfHrs = 24;
+  numOfMins = 60;
+  numOfSecs = 60;
   timeDiff=0;
   secsDiff:Number;
   hoursDiff:Number;
@@ -35,10 +38,10 @@ export class TimerComponent implements OnInit {
   
    findTimer(){
      this.timeDiff = this.target_date.getTime()-new Date().getTime();
-     this.secsDiff = Math.floor((this.timeDiff)/constants.numOfMilliSecs%constants.numOfSecs);
-     this.minsDiff = Math.floor((this.timeDiff)/(constants.numOfMilliSecs*constants.numOfMins)%constants.numOfSecs);
-     this.hoursDiff = Math.floor((this.timeDiff)/(constants.numOfMilliSecs*constants.numOfMins*constants.numOfSecs)%constants.numOfHrs);
-     this.daysDiff = Math.floor((this.timeDiff)/(constants.numOfMilliSecs*constants.numOfMins*constants.numOfSecs*constants.numOfHrs));
+     this.secsDiff = Math.floor((this.timeDiff)/this.numOfMilliSecs%this.numOfSecs);
+     this.minsDiff = Math.floor((this.timeDiff)/(this.numOfMilliSecs*this.numOfMins)%this.numOfSecs);
+     this.hoursDiff = Math.floor((this.timeDiff)/(this.numOfMilliSecs*this.numOfMins*this.numOfSecs)%this.numOfHrs);
+     this.daysDiff = Math.floor((this.timeDiff)/(this.numOfMilliSecs*this.numOfMins*this.numOfSecs*this.numOfHrs));
 
      this.daysDiff = this.padZeroes(this.daysDiff);
      this.hoursDiff = this.padZeroes(this.hoursDiff);
